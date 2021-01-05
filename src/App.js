@@ -71,10 +71,10 @@ function App() {
           </div>
           <div id="display" className="flex items-center py-2"><span className="text-s text-gray-600">Son : </span></div>
           <div className="flex items-center justify-end py-2">
-            <label for="toggle" class="mr-2 text-s text-gray-600">Power</label>
-            <div class="relative inline-block w-16 align-middle select-none transition duration-200 ease-in">
-              <input type="checkbox" name="toggle" id="toggle" class="toggle-checkbox absolute block w-8 h-8 rounded-full bg-white border-4 appearance-none cursor-pointer focus:outline-black"/>
-              <label for="toggle" class="toggle-label block overflow-hidden h-8 rounded-full bg-gray-300 cursor-pointer"></label>
+            <label htmlFor="toggle" className="mr-2 text-s text-gray-600">Power</label>
+            <div className="relative inline-block w-16 align-middle select-none transition duration-200 ease-in">
+              <input type="checkbox" name="toggle" id="toggle" className="toggle-checkbox absolute block w-8 h-8 rounded-full bg-white border-4 appearance-none cursor-pointer focus:outline-black"/>
+              <label htmlFor="toggle" className="toggle-label block overflow-hidden h-8 rounded-full bg-gray-300 cursor-pointer"></label>
             </div>
           </div>
         </div>
