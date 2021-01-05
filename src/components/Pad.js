@@ -9,10 +9,15 @@ class Pad extends Component {
     };
   }
 
-  playSound = (isActive) => { 
-    this.audio.play();
-    this.audio.currentTime = 0;
+  playSound = () => { 
     this.props.displaySound(this.props.id);
+    this.setState({isActive: !this.state.isActive});
+    if(this.state.isActive !== true) {
+      this.audio.play();
+      this.audio.currentTime = 0;
+    } else {
+      this.audio.pause();
+    }
   }
 
   handleClick = () => { 

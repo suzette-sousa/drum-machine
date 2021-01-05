@@ -63,7 +63,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      displaySound: 'Tapez une lettre au clavier pour jouer le son associé'
+      displaySound: 'Une lettre (clic ou clavier) = un son associé'
     };
   }
 
@@ -73,10 +73,10 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="text-center text-5xl my-6">Drum machine</h1>
+          <h1 className="text-center text-4xl my-6">Drum machine</h1>
         </header>
         <main className="main bg-black text-white">
-          <div id="display" className="text-center p-4">{this.state.displaySound}</div>
+          <div id="display" className="text-center p-4 uppercase">{this.state.displaySound}</div>
           <div id="drum-machine" className="grid grid-cols-3 gap-1">
             {
               btnsPad.map((item, i) => {
