@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.App {
+  max-width: 600px;
+  margin: auto;
+}
+input[type="range"]::-webkit-slider-thumb {
+  width: 0.4rem;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4rem;
+  cursor: ew-resize;
+  @apply bg-indigo-400;
+  box-shadow: -128rem 0 0 127.8rem #000;
+}
+.toggle-checkbox:checked {
+  @apply right-0 border-black;
+}
+.toggle-checkbox:checked + .toggle-label {
+  @apply bg-black;
+}
