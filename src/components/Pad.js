@@ -9,9 +9,7 @@ class Pad extends Component {
     this.sound.volume = this.props.volume;
   }
 
-  handleClick = () => { 
-    this.playSound();
-  }
+  handleClick = () => this.playSound();
 
   handleKeyPress = (e) => {
     if(e.keyCode === this.props.keypad) {
@@ -19,19 +17,16 @@ class Pad extends Component {
     }
   }
 
-  componentDidMount() {
-    document.addEventListener('keydown', this.handleKeyPress);
-  }
+  componentDidMount = () => document.addEventListener('keydown', this.handleKeyPress);
   
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.handleKeyPress);
-  }
+  componentWillUnmount = () => document.removeEventListener('keydown', this.handleKeyPress);
+
 
   render() {
 
     return (
       <span onClick={this.handleClick}>
-        <button id={this.props.id} className={`drum-pad text-white bg-indigo-500 border-0 p-6 focus:outline-white hover:bg-indigo-600 text-3xl w-full`}>
+        <button disabled={!this.props.isPower} id={this.props.id} className={`drum-pad text-white bg-indigo-500 border-0 p-6 focus:outline-white hover:bg-indigo-600 text-3xl w-full`}>
           {this.props.itemPad}
           <audio id={this.props.itemPad} className="clip" src={this.props.src} ref={ref => this.sound = ref}>
             Votre navigateur ne parvient pas à lire le fichier audio.'
