@@ -13,11 +13,11 @@ input[type="range"]::-webkit-slider-thumb {
   height: 4rem;
   cursor: ew-resize;
   @apply bg-indigo-400;
-  box-shadow: -128rem 0 0 127.8rem #000;
+  box-shadow: -128rem 0 0 127.8rem #fff;
 }
 .toggle-checkbox:checked {
-  @apply right-0 border-black;
+  @apply right-0;
 }
 .toggle-checkbox:checked + .toggle-label {
-  @apply bg-black;
+  @apply bg-white;
 }

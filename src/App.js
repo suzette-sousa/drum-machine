@@ -1,61 +1,62 @@
 import React, {Component} from 'react';
 import Pad from './components/Pad'
 import './App.css';
+import SliderRange from './components/SliderRange';
 
 const btnsPad = [
   {
     btn: 'Q',
     keypad: 81,
-    descr: 'applauses',
-    src: 'https://lasonotheque.org/UPLOAD/mp3/0021.mp3'
+    descr: 'Heater-1',
+    src: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3'
   },
   {
     btn: 'W',
     keypad: 87,
-    descr: 'birds',
-    src: 'https://lasonotheque.org/UPLOAD/mp3/0100.mp3'
+    descr: 'Heater-2',
+    src: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3'
   },
   {
     btn: 'E',
     keypad: 69,
-    descr: 'water',
-    src: 'https://lasonotheque.org/UPLOAD/mp3/0124.mp3'
+    descr: 'Heater-3',
+    src: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3'
   },
   {
     btn: 'A',
     keypad: 65,
-    descr: 'walking',
-    src: 'https://lasonotheque.org/UPLOAD/mp3/0085.mp3'
+    descr: 'Heater-4_1',
+    src: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3'
   },
   {
     btn: 'S',
     keypad: 83,
-    descr: 'inthetrain',
-    src: 'https://lasonotheque.org/UPLOAD/mp3/0212.mp3'
+    descr: 'Heater-6',
+    src: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3'
   },
   {
     btn: 'D',
     keypad: 68,
-    descr: 'bip',
-    src: 'https://lasonotheque.org/UPLOAD/mp3/0456.mp3'
+    descr: 'Dsc_Oh',
+    src: 'https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3'
   },
   {
     btn: 'Z',
     keypad: 90,
-    descr: 'eat',
-    src: 'https://lasonotheque.org/UPLOAD/mp3/1114.mp3'
+    descr: 'KRP4_KICK_1',
+    src: 'https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3'
   },
   {
     btn: 'X',
     keypad: 88,
-    descr: 'scream',
-    src: 'https://lasonotheque.org/UPLOAD/mp3/1228.mp3'
+    descr: 'Cev_H2',
+    src: 'https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3'
   },
   {
     btn: 'C',
     keypad: 67,
-    descr: 'bong',
-    src: 'https://lasonotheque.org/UPLOAD/mp3/2280.mp3'
+    descr: 'Brk_Snr',
+    src: 'https://s3.amazonaws.com/freecodecamp/drums/Brk_Snr.mp3'
   }
 ];
 
@@ -63,11 +64,25 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      displaySound: 'Une lettre (clic ou clavier) = un son associé'
+      displaySound: 'Une lettre (clic ou clavier) = un son associé',
+      power: true,
+      inputVol: 50,
+      volume: 0.5
     };
+    this.changeVol = this.changeVol.bind(this);
   }
 
-  displaySound = displaySound => this.setState({displaySound})
+  displaySound = displaySound => this.setState({displaySound});
+
+  changeVol(e) {
+    const volume = e.target.value / 100;
+    
+    this.setState({
+      volume: volume,
+      inputVol: e.target.value
+    })
+
+  }
 
   render() {
     return (
@@ -86,20 +101,22 @@ class App extends Component {
                   itemPad={item.btn}
                   src={item.src}
                   displaySound={this.displaySound}
-                  keypad={item.keypad} />
+                  keypad={item.keypad}
+                  volume={this.state.volume}
+                  />
               })
             }
           </div>
           <div className="flex justify-between p-4">
-            <div className="flex items-center py-2">
-              <span className="mr-2 text-s text-gray-400">Volume</span>
-              <input className="overflow-hidden appearance-none bg-gray-200 h-4 w-128" type="range" min="1" max="100" step="1" value="15" />
-            </div>
+            <SliderRange 
+              inputVol={this.state.inputVol}
+              changeVol={this.changeVol}
+            />
             <div className="flex items-center justify-end py-2">
               <label htmlFor="toggle" className="mr-2 text-s text-gray-400">Power</label>
               <div className="relative inline-block w-16 align-middle select-none transition duration-200 ease-in">
-                <input type="checkbox" name="toggle" id="toggle" className="toggle-checkbox absolute block w-8 h-8 rounded-full bg-white border-4 appearance-none cursor-pointer focus:outline-black"/>
-                <label htmlFor="toggle" className="toggle-label block overflow-hidden h-8 rounded-full bg-gray-300 cursor-pointer"></label>
+                <input type="checkbox" name="toggle" id="toggle" className="toggle-checkbox absolute block w-8 h-8 rounded-full bg-indigo-400 appearance-none cursor-pointer focus:outline-white" />
+                <label htmlFor="toggle" className="toggle-label block overflow-hidden h-8 rounded-full bg-gray-600 cursor-pointer"></label>
               </div>
             </div>
           </div>

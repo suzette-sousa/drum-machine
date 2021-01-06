@@ -2,22 +2,11 @@ import React, {Component} from 'react';
 
 class Pad extends Component {
 
-  constructor() {
-    super();
-    this.state = {
-      isActive: false
-    };
-  }
-
   playSound = () => { 
+    this.sound.play();
+    this.sound.currentTime = 0;
     this.props.displaySound(this.props.id);
-    this.setState({isActive: !this.state.isActive});
-    if(this.state.isActive !== true) {
-      this.audio.play();
-      this.audio.currentTime = 0;
-    } else {
-      this.audio.pause();
-    }
+    this.sound.volume = this.props.volume;
   }
 
   handleClick = () => { 
@@ -42,9 +31,9 @@ class Pad extends Component {
 
     return (
       <span onClick={this.handleClick}>
-        <button id={this.props.id} className={`${this.state.isActive ? 'bg-indigo-800': null} drum-pad text-white bg-indigo-500 border-0 p-6 focus:outline-white hover:bg-indigo-600 text-3xl w-full`}>
+        <button id={this.props.id} className={`drum-pad text-white bg-indigo-500 border-0 p-6 focus:outline-white hover:bg-indigo-600 text-3xl w-full`}>
           {this.props.itemPad}
-          <audio id={this.props.itemPad} className="clip" src={this.props.src} ref={ref => this.audio = ref}>
+          <audio id={this.props.itemPad} className="clip" src={this.props.src} ref={ref => this.sound = ref}>
             Votre navigateur ne parvient pas à lire le fichier audio.'
           </audio>
         </button>
